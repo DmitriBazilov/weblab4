@@ -15,6 +15,7 @@ export class RegistrationComponent implements OnInit {
   isSignedUp = false;
   isRegistrationFailed = false;
   errorMessage = '';
+
   private registerInfo: RegisterInfo| undefined;
 
   constructor(private authService: AuthService,

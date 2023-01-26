@@ -12,7 +12,7 @@ public class HitDTO {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    private UserDTO username;
+    private UserDTO user;
 
     @Basic
     @Column(name = "x", nullable = false)
@@ -43,12 +43,12 @@ public class HitDTO {
         this.id = id;
     }
 
-    public UserDTO getUsername() {
-        return username;
+    public UserDTO getUser() {
+        return user;
     }
 
-    public void setUsername(UserDTO username) {
-        this.username = username;
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     public double getX() {
@@ -97,5 +97,19 @@ public class HitDTO {
 
     public void setExecuteTime(long executeTime) {
         this.executeTime = executeTime;
+    }
+
+    @Override
+    public String toString() {
+        return "HitDTO{" +
+                "id=" + id +
+                ", user=" + user +
+                ", x=" + x +
+                ", y=" + y +
+                ", r=" + r +
+                ", hit=" + hit +
+                ", currentTime=" + currentTime +
+                ", executeTime=" + executeTime +
+                '}';
     }
 }

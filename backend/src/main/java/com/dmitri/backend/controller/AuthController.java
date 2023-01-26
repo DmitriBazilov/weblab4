@@ -1,7 +1,9 @@
 package com.dmitri.backend.controller;
 
+import com.dmitri.backend.dto.UserDTO;
 import com.dmitri.backend.model.AuthorizationManager;
 import com.dmitri.backend.model.User;
+import com.dmitri.backend.repository.UserRepository;
 import com.dmitri.backend.util.AuthStatus;
 import com.dmitri.backend.util.JwtTokenUtil;
 import org.json.JSONObject;
@@ -19,6 +21,9 @@ public class AuthController {
 
     @EJB
     private JwtTokenUtil jwtTokenUtil;
+
+    @EJB
+    private UserRepository userRepository;
 
     @GET
     @Path("/login")
@@ -58,8 +63,18 @@ public class AuthController {
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response register(User data) {
-        AuthStatus authStatus = authorizationManager.addUser(data.getUsername(), data);
+        AuthStatus authStatus;
+
+        User dbUser = userRepository.getUserByUsername(data.getUsername());
+        System.out.println(dbUser);
+        if (dbUser != null) authStatus = AuthStatus.AUTH_WRONG_LOGIN;
+        else authStatus = AuthStatus.AUTH_OK;
+
         if (authStatus == AuthStatus.AUTH_OK) {
+            UserDTO dto = new UserDTO();
+            dto.setUsername(data.getUsername());
+            dto.setPassword(data.getPassword());
+            userRepository.addUser(dto);
             return Response.ok().build();
         } else {
             String error = "Такой пользователь уже существует";

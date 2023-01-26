@@ -13,6 +13,8 @@ public class Hit {
 
     private double r;
 
+    public Hit() {}
+
     public Hit(double x, double y, double r) {
         this.x = x;
         this.y = y;

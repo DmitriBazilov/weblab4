@@ -64,7 +64,7 @@ export class PointGraphComponent implements OnInit {
   savePoint(point: PointRequestDto) {
     this.service.savePoint(point).subscribe(
       data => {
-        console.log("New point " + data.dt);
+        console.log("New point " + data.currentTime);
         this.addEvent.emit(data);
         this.addPoint(data);
       },

@@ -24,7 +24,6 @@ import { FooterComponent } from './component/footer/footer.component';
 import { PointTableComponent } from './component/point-table/point-table.component';
 import { PointGraphComponent } from './component/point-graph/point-graph.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +57,7 @@ import { PointGraphComponent } from './component/point-graph/point-graph.compone
     MatPaginatorModule,
     MatSortModule,
     ReactiveFormsModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

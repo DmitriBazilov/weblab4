@@ -33,6 +33,8 @@
           <element id="library" level="project" name="Maven: org.json:json:20220320" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.24" />
           <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt-api:0.11.5" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.3.8" />
+          <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

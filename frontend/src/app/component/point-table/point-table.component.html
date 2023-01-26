@@ -26,14 +26,14 @@
       <td mat-cell *matCellDef="let row">{{row.r}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="dt">
-      <th mat-header-cell *matHeaderCellDef mat-header>DateTime</th>
-      <td mat-cell *matCellDef="let row">{{row.dt}}</td>
+    <ng-container matColumnDef="currentTime">
+      <th mat-header-cell *matHeaderCellDef mat-header>CurrentTime</th>
+      <td mat-cell *matCellDef="let row">{{row.currentTime}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="et">
+    <ng-container matColumnDef="executeTime">
       <th mat-header-cell *matHeaderCellDef mat-header>ExecuteTime</th>
-      <td mat-cell *matCellDef="let row">{{row.et}}</td>
+      <td mat-cell *matCellDef="let row">{{row.executeTime / 10000}}s</td>
     </ng-container>
 
     <ng-container matColumnDef="hit">

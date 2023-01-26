@@ -53,7 +53,7 @@ export class PointFormComponent {
 
       this.pointService.savePoint(point).subscribe(
         data => {
-          console.log("New point " + data.dt);
+          console.log("New point " + data.currentTime);
           this.addEvent.emit(data);
         },
 

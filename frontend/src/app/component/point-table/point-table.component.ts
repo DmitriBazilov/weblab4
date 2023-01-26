@@ -16,7 +16,7 @@ export class PointTableComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<PointResponse>;
   @ViewChild(MatPaginator) paginator! : MatPaginator;
 
-  displayedColumns = ['x', 'y', 'r', 'dt', 'et', 'hit'];
+  displayedColumns = ['x', 'y', 'r', 'currentTime', 'executeTime', 'hit'];
   dataSource: PointResponse[] = [];
 
   constructor(private service: PointService) {
@@ -36,6 +36,7 @@ export class PointTableComponent implements OnInit {
   }
 
   clearPoints() {
+
     this.service.clearPoints();
     this.dataSource = [];
     this.table.renderRows();
