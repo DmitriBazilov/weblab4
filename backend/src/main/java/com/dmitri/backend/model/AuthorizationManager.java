@@ -9,21 +9,21 @@ import java.util.Map;
 @Singleton
 public class AuthorizationManager {
 
-    private Map<String, UserInfo> users = new HashMap<>();
+    private Map<String, User> users = new HashMap<>();
 
-    public AuthStatus addUser(String username, UserInfo userInfo) {
+    public AuthStatus addUser(String username, User user) {
         boolean containsFlag = users.containsKey(username);
         if (containsFlag) {
             return AuthStatus.AUTH_WRONG_LOGIN;
         } else {
-            users.put(username, userInfo);
+            users.put(username, user);
             return AuthStatus.AUTH_OK;
         }
     }
 
-    public AuthStatus authenticate(UserInfo userInfo) {
-        String reqUsername = userInfo.getUsername();
-        String reqPassword = userInfo.getPassword();
+    public AuthStatus authenticate(User user) {
+        String reqUsername = user.getUsername();
+        String reqPassword = user.getPassword();
         if (!users.containsKey(reqUsername)) {
             return AuthStatus.AUTH_WRONG_LOGIN;
         } else if (!users.get(reqUsername).getPassword().equals(reqPassword)) {

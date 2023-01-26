@@ -1,7 +1,9 @@
 package com.dmitri.backend.filter;
 
 import com.dmitri.backend.annotation.Secured;
+import com.dmitri.backend.model.UserPrincipal;
 import com.dmitri.backend.util.JwtTokenUtil;
+import com.dmitri.backend.util.UserSecurityContext;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.json.JSONObject;
 
@@ -10,8 +12,10 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
+import java.security.Principal;
 
 @Secured
 @Provider
@@ -52,11 +56,15 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         if (username == null || !jwtTokenUtil.validateToken(jwtToken)) {
             abortRequestWithUnauthorized(requestContext, "Пользователь не авторизован");
         }
+        final SecurityContext securityContext = requestContext.getSecurityContext();
+
+        String scheme = requestContext.getUriInfo().getRequestUri().getScheme();
+        requestContext.setSecurityContext(new UserSecurityContext(new UserPrincipal(username), scheme));
     }
 
     public void abortRequestWithUnauthorized(ContainerRequestContext requestContext, String message) {
         JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("error", message);
+        jsonResponse.put("message", message);
         requestContext.abortWith(
                 Response.status(401)
                         .entity(jsonResponse.toString())

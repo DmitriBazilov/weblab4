@@ -16,8 +16,7 @@ export class PointTableComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<PointResponse>;
   @ViewChild(MatPaginator) paginator! : MatPaginator;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['x', 'y', 'r', 'dt', 'hit'];
+  displayedColumns = ['x', 'y', 'r', 'dt', 'et', 'hit'];
   dataSource: PointResponse[] = [];
 
   constructor(private service: PointService) {
@@ -32,8 +31,6 @@ export class PointTableComponent implements OnInit {
   }
 
   addPoint(point:PointResponse) {
-
-
     this.dataSource.push(point);
     this.table.renderRows();
   }

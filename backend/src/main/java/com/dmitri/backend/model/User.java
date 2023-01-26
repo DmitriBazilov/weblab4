@@ -3,18 +3,20 @@ package com.dmitri.backend.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class UserInfo {
+public class User implements Serializable {
 
     private String username;
+
     private String password;
 
-    public UserInfo() {
-    }
+    public User() {}
 
-    public UserInfo(String username, String password) {
-        this.password = password;
+    public User(String username, String password) {
         this.username = username;
+        this.password = password;
     }
 }

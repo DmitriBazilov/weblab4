@@ -1,6 +1,6 @@
 package com.dmitri.backend.util;
 
-import com.dmitri.backend.model.UserInfo;
+import com.dmitri.backend.model.User;
 import io.jsonwebtoken.*;
 import javax.ejb.Singleton;
 import java.util.Date;
@@ -37,9 +37,9 @@ public class JwtTokenUtil {
         return expiration.before(new Date());
     }
 
-    public String generateToken(UserInfo userInfo) {
+    public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userInfo.getUsername());
+        return doGenerateToken(claims, user.getUsername());
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {

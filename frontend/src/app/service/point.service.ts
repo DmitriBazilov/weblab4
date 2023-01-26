@@ -13,9 +13,9 @@ const httpOptions = {
 })
 export class PointService {
 
-  private getUrl = 'http://localhost:8080/api/points';
-  private saveUrl = 'http://localhost:8080/api/points/save';
-  private clearUrl = 'http://localhost:8080/api/points/clear';
+  private getUrl = 'http://localhost:8080/backend-1.0-SNAPSHOT/api/hits';
+  private saveUrl = 'http://localhost:8080/backend-1.0-SNAPSHOT/api/hits/save';
+  private clearUrl = 'http://localhost:8080/backend-1.0-SNAPSHOT/api/hits/clear';
 
 
   savePoint(point: PointRequestDto): Observable<PointResponse> {

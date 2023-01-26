@@ -1,7 +1,7 @@
 package com.dmitri.backend.controller;
 
 import com.dmitri.backend.model.AuthorizationManager;
-import com.dmitri.backend.model.UserInfo;
+import com.dmitri.backend.model.User;
 import com.dmitri.backend.util.AuthStatus;
 import com.dmitri.backend.util.JwtTokenUtil;
 import org.json.JSONObject;
@@ -35,7 +35,7 @@ public class AuthController {
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response authorize(UserInfo data) {
+    public Response authorize(User data) {
         AuthStatus authStatus = authorizationManager.authenticate(data);
         String error = "";
         if (authStatus == AuthStatus.AUTH_OK) {
@@ -50,21 +50,21 @@ public class AuthController {
             error = "Неправильный пароль";
         }
         JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("error", error);
+        jsonResponse.put("message", error);
         return Response.status(400).entity(jsonResponse.toString()).build();
     }
 
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response register(UserInfo data) {
+    public Response register(User data) {
         AuthStatus authStatus = authorizationManager.addUser(data.getUsername(), data);
         if (authStatus == AuthStatus.AUTH_OK) {
             return Response.ok().build();
         } else {
             String error = "Такой пользователь уже существует";
             JSONObject jsonResopnse = new JSONObject();
-            jsonResopnse.put("error", error);
+            jsonResopnse.put("message", error);
             return Response.status(400).entity(jsonResopnse.toString()).build();
         }
 
