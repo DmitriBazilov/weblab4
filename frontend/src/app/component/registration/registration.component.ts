@@ -51,14 +51,13 @@ export class RegistrationComponent implements OnInit {
           },
           error => {
             console.log(error);
-            console.log(error.message);
-            this.errorMessage = error.message;
+            this.errorMessage = error.error.message;
           }
         );
       },
       error => {
         console.log(error);
-        this.errorMessage = error.error;
+        this.errorMessage = error.error.message;
         this.isRegistrationFailed = true;
       }
     );

@@ -32,11 +32,7 @@
           <element id="library" level="project" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.15" />
           <element id="library" level="project" name="Maven: org.json:json:20220320" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.24" />
-          <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt:0.2" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.6" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.4.2" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.0" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.2" />
+          <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt-api:0.11.5" />
         </element>
       </element>
       <element id="directory" name="META-INF">

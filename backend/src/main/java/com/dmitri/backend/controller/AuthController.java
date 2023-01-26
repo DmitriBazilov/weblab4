@@ -35,16 +35,14 @@ public class AuthController {
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response authorize(JSONObject data) {
-        String username = data.getString("username");
-        String password = data.getString("password");
-        UserInfo userInfo = new UserInfo(username, password);
-        AuthStatus authStatus = authorizationManager.authenticate(userInfo);
+    public Response authorize(UserInfo data) {
+        AuthStatus authStatus = authorizationManager.authenticate(data);
         String error = "";
         if (authStatus == AuthStatus.AUTH_OK) {
-            String token = jwtTokenUtil.generateToken(userInfo);
+            String token = jwtTokenUtil.generateToken(data);
             JSONObject jsonResponse = new JSONObject();
             jsonResponse.append("token", token);
+            jsonResponse.append("username", data.getUsername());
             return Response.ok(jsonResponse.toString()).build();
         } else if (authStatus == AuthStatus.AUTH_WRONG_LOGIN) {
             error = "Такого пользователя не существует";
@@ -52,24 +50,21 @@ public class AuthController {
             error = "Неправильный пароль";
         }
         JSONObject jsonResponse = new JSONObject();
-        jsonResponse.append("error", error);
+        jsonResponse.put("error", error);
         return Response.status(400).entity(jsonResponse.toString()).build();
     }
 
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response register(JSONObject data) {
-        String username = data.getString("username");
-        String password = data.getString("password");
-        UserInfo userInfo = new UserInfo(username, password);
-        AuthStatus authStatus = authorizationManager.addUser(username, userInfo);
+    public Response register(UserInfo data) {
+        AuthStatus authStatus = authorizationManager.addUser(data.getUsername(), data);
         if (authStatus == AuthStatus.AUTH_OK) {
             return Response.ok().build();
         } else {
             String error = "Такой пользователь уже существует";
             JSONObject jsonResopnse = new JSONObject();
-            jsonResopnse.append("error", error);
+            jsonResopnse.put("error", error);
             return Response.status(400).entity(jsonResopnse.toString()).build();
         }
 
