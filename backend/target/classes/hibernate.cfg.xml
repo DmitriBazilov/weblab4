@@ -4,8 +4,8 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:postgresql://localhost:1337/studs</property>
-        <!--        <property name="connection.url">jdbc:postgresql://localhost:5432/studs</property>-->
+<!--        <property name="connection.url">jdbc:postgresql://localhost:1337/studs</property>-->
+                <property name="connection.url">jdbc:postgresql://localhost:5432/studs</property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
         <property name="show_sql">true</property>

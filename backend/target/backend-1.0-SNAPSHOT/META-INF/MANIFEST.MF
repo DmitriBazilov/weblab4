@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Created-By: IntelliJ IDEA
-Built-By: R1300-W-4-Stud
-Build-Jdk: 17.0.6
-

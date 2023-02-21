@@ -84,7 +84,7 @@ public class HitController {
     @Produces(MediaType.TEXT_PLAIN)
     public Response clearHits(@Context SecurityContext sc) {
         UserDTO user = userRepository.getUserDTOByUsername(sc.getUserPrincipal().getName());
-        hitRepository.clearHits(user);
-        return Response.ok().build();
+        int hits = hitRepository.clearHits(user);
+        return Response.ok(hits).build();
     }
 }

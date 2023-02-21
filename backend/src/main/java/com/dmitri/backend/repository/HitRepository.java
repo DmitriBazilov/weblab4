@@ -54,14 +54,15 @@ public class HitRepository {
         return null;
     }
 
-    public void clearHits(UserDTO user) {
+    public int clearHits(UserDTO user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             Transaction transaction = session.beginTransaction();
-            session.createQuery("delete from HitDTO x where x.user = :user")
+            int clearHits = session.createQuery("delete from HitDTO x where x.user = :user")
                     .setParameter("user", user)
                     .executeUpdate();
             transaction.commit();
+            return clearHits;
         } catch (Exception e) {
             if (session.getTransaction().isActive())
                 session.getTransaction().rollback();
@@ -69,6 +70,7 @@ public class HitRepository {
             if (session != null && session.isOpen())
                 session.close();
         }
+        return -1;
     }
 
 }
